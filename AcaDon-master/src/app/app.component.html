@@ -1,0 +1,10 @@
+<mat-toolbar *ngIf="showToolbar" color="primary" class="header">
+  <span>Acadon</span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/home">Home</button>
+  <button mat-button *ngIf="papelUsuario !== 'ALUNO'" routerLink="/clientes">Clientes</button>
+  <button mat-button *ngIf="papelUsuario !== 'ALUNO'" routerLink="/clientes/cadastro">Cadastrar Cliente</button>
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

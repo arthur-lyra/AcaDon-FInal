@@ -1,0 +1,40 @@
+<div class="form-container">
+<form (ngSubmit)="addCliente()" class="cliente-form" #clienteForm="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input matInput [(ngModel)]="cliente.nome" (ngModelChange)="cliente.nome = capitalizeName($event)" name="nome" required>
+      <mat-error *ngIf="clienteForm.submitted && !cliente.nome">Nome é obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>CPF</mat-label>
+      <input matInput [(ngModel)]="cliente.cpf" name="cpf" minlength="14" maxlength="14" (ngModelChange)="cliente.cpf = formatCPF($event)" required>
+      <mat-error *ngIf="clienteForm.submitted && !cliente.cpf">CPF é obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Idade</mat-label>
+      <input matInput type="number" [(ngModel)]="cliente.idade" name="idade" required>
+      <mat-error *ngIf="!cliente.idade">Idade é obrigatória</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="cliente.email" name="email" maxlength="255" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required >
+      <mat-error *ngIf="!cliente.email">Email é obrigatória</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>Sexo</mat-label>
+      <mat-select [(value)]="cliente.sexo">
+        <mat-option value="Masculino">Masculino</mat-option>
+        <mat-option value="Feminino">Feminino</mat-option>
+        <mat-option value="Outro">Outro</mat-option>
+        <mat-option value="Não Declarado">Não Declarado</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" >Cadastrar</button>
+  </form>
+</div>

@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Editar Cliente</h2>
+<mat-dialog-content >
+  <form (ngSubmit)="onSave()" #editarForm="ngForm">
+    <mat-form-field appearance="fill" class="dialogo">
+      <mat-label>Nome</mat-label>
+      <input matInput [(ngModel)]="cliente.nome" (ngModelChange)="cliente.nome = capitalizeName($event)" name="nome" required>
+      <mat-error *ngIf="editarForm.submitted && !cliente.nome">Nome é obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="tamanho">
+      <mat-label>CPF</mat-label>
+      <input matInput [(ngModel)]="cliente.cpf" name="cpf" minlength="14" maxlength="14" (ngModelChange)="cliente.cpf = formatCPF($event)" required>
+      <mat-error *ngIf="editarForm.submitted && !cliente.cpf">CPF é obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="dialogo">
+      <mat-label>Idade</mat-label>
+      <input matInput type="number" [(ngModel)]="cliente.idade" name="idade" required>
+      <mat-error *ngIf="editarForm.submitted && !cliente.idade">Idade é obrigatória</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="tamanho">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="cliente.email" name="email" maxlength="255" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required>
+      <mat-error *ngIf="editarForm.submitted && !cliente.email">Email é obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="dialogo">
+      <mat-label>Sexo</mat-label>
+      <mat-select [(ngModel)]="cliente.sexo" name="sexo" required>
+        <mat-option value="Masculino">Masculino</mat-option>
+        <mat-option value="Feminino">Feminino</mat-option>
+        <mat-option value="Outro">Outro</mat-option>
+        <mat-option value="Não Declarado">Não Declarado</mat-option>
+      </mat-select>
+      <mat-error *ngIf="editarForm.submitted && !cliente.sexo">Sexo é obrigatório</mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button color="primary" [disabled]="!editarForm.valid" (click)="onSave()">Salvar</button>
+</mat-dialog-actions>

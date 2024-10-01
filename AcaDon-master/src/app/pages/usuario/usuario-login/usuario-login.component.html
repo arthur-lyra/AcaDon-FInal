@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <div class="body">
+    <h1>Login</h1>
+    <form (ngSubmit)="login()" [formGroup]="loginUsuario">
+      <div class="input-group">
+        <label>Endereço de Email</label>
+        <input
+          type="email"
+          formControlName="email"
+          class="form-input"
+          placeholder="name@example.com"
+        />
+      </div>
+      <div class="input-group">
+        <label>Senha</label>
+        <input
+          type="password"
+          formControlName="senha"
+          class="form-input"
+          placeholder="Senha"
+        />
+      </div>
+      <div class="input-group">
+        <button type="submit">Acessar</button>
+      </div>
+      <p>Não tem Conta ? <a href="/register">Registrar</a></p>
+    </form>
+  </div>
+</div>

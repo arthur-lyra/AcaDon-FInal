@@ -1,0 +1,76 @@
+<div class="wrapper">
+  <div class="body">
+    <h1>Cadastro</h1>
+    <form (ngSubmit)="registrar()" [formGroup]="registrarUsuario">
+      <div class="input-group">
+        <label>Email</label>
+        <input
+          type="email"
+          class="form-input"
+          formControlName="email"
+          placeholder="name@example.com"
+        />
+        <span
+          *ngIf="
+            registrarUsuario.get('email')?.hasError('required') &&
+            registrarUsuario.get('email')?.touched
+          "
+          class="text-danger errorLabel"
+        >
+          O <strong>Email</strong> é necessario
+        </span>
+        <span
+          *ngIf="
+            registrarUsuario.get('email')?.hasError('email') &&
+            registrarUsuario.get('email')?.touched
+          "
+          class="text-danger errorLabel"
+        >
+          O <strong>Email</strong> é invalido
+        </span>
+      </div>
+      <div class="input-group">
+        <label>Senha</label>
+        <input
+          type="password"
+          class="form-input"
+          formControlName="senha"
+          placeholder="Senha"
+        />
+        <span
+          *ngIf="
+            registrarUsuario.get('senha')?.hasError('required') &&
+            registrarUsuario.get('senha')?.touched
+          "
+          class="text-danger errorLabel"
+        >
+          A <strong>Senha</strong> é necessaria
+        </span>
+        <span
+          *ngIf="
+            registrarUsuario.get('senha')?.hasError('minLength') &&
+            registrarUsuario.get('senha')?.touched
+          "
+          class="text-danger errorLabel"
+        >
+          A <strong>Senha</strong> preciso de minimo de 6 caracteres
+        </span>
+      </div>
+      <div class="input-group">
+        <label>Repetir Senha</label>
+        <input
+          type="password"
+          class="form-input"
+          formControlName="repetirSenha"
+          placeholder="Repetir Senha"
+        />
+      </div>
+      <div class="input-group">
+        <button [disabled]="registrarUsuario.invalid" type="submit">
+          Cadastrar
+        </button>
+      </div>
+      <a href="/login">Voltar</a>
+    </form>
+  </div>
+</div>
